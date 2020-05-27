@@ -10,7 +10,6 @@ import { CadastrarUrlComponent } from '@app/cadastro/links/modal'
 
 import { Link } from '@app/_models'
 import { Observable } from 'rxjs';
-import { startWith, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-links',
@@ -64,6 +63,12 @@ export class LinksComponent implements OnInit {
   }
 
   abrirPopUp() {
-    this.dialog.open(CadastrarUrlComponent, {data : this.anoModeloSelecionado} );
+    const dialogRef = this.dialog.open(CadastrarUrlComponent, {data : this.anoModeloSelecionado} );
+    dialogRef.componentInstance.refresh.subscribe( (retorno) => {
+      this.anoModeloService.recuperarReportagens(this.anoModeloSelecionado).subscribe(retorno => {
+        this.dataSource = new MatTableDataSource(retorno);
+        this.dataSource.paginator = this.paginator;
+      })
+    })
   }
 }
