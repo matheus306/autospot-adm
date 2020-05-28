@@ -12,9 +12,10 @@ import { MatDialogModule } from '@angular/material/dialog';
 
 import { LinksComponent } from './links/links.component';
 import { CadastrarUrlComponent } from '@app/cadastro/links/modal'
+import { ItensDeSerieComponent } from '@app/cadastro/itens-de-serie'
 
 @NgModule({
-  declarations: [LinksComponent, CadastrarUrlComponent],
+  declarations: [LinksComponent, CadastrarUrlComponent, ItensDeSerieComponent],
   imports: [
     CommonModule,
     MatFormFieldModule,

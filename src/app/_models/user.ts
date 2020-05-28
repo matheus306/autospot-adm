@@ -3,4 +3,5 @@
 export class User {
     usuario: Usuario;
     token:   string;
+    dataLogin? : Date
 }
