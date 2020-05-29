@@ -4,7 +4,6 @@ import { AuthGuard } from '@app/_helpers';
 import { LinksComponent } from "./links"
 import { ItensDeSerieComponent } from "./itens-de-serie"
 
-
 export const CadastroRoutes : Routes = [
     {
         path : 'links',

@@ -21,7 +21,7 @@ export class CadastrarUrlComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public modeloAutoSpot : ModeloAutospotDTO, 
     private linkService : LinkService,
-    private dialogRef: MatDialogRef<CadastrarUrlComponent>,) { }
+    private dialogRef: MatDialogRef<CadastrarUrlComponent>) { }
 
   ngOnInit(): void {
     this.link = new Link();
