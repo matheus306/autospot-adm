@@ -4,3 +4,4 @@ export * from './marca.service';
 export * from './modelo.service';
 export * from './ano-modelo.service';
 export * from './link.service';
+export * from './item.serie.service';
