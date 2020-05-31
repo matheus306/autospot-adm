@@ -21,5 +21,5 @@ export class ItemSerieService {
 
   salvar (item : ItemSerie) {
     return this.http.post(`${environment.apiUrl}/api/v1/item-de-serie/`, item);
-
+  }
 }
