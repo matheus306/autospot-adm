@@ -15,7 +15,7 @@ import { CadastrarItemComponent } from '@app/cadastro/itens-de-serie/modal/cadas
 export class ItensDeSerieComponent implements OnInit {
 
   dataSource = new MatTableDataSource<ItemSerie>();
-  displayedColumns: string[] = ['id', 'descricao', 'actions'];
+  displayedColumns: string[] = ['id', 'descricao', 'observacao', 'url', 'actions'];
 
   @ViewChild(MatPaginator, {static: true}) 
   paginator : MatPaginator;
@@ -40,7 +40,7 @@ export class ItensDeSerieComponent implements OnInit {
   }
 
   novo() {
-    const dialogRef = this.modal.open(CadastrarItemComponent);
+    const dialogRef = this.modal.open(CadastrarItemComponent, {width: '80%'});
     dialogRef.componentInstance.refresh.subscribe(retorno => {
       this.initDataSource();
     })
