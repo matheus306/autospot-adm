@@ -1,5 +1,5 @@
-import { MatDialogRef } from '@angular/material/dialog';
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component, OnInit, Output, EventEmitter, Inject } from '@angular/core';
 
 import { ItensDeSerieComponent } from '@app/cadastro/itens-de-serie/';
 import { ItemSerieService } from '@app/_services/item.serie.service'
@@ -18,12 +18,24 @@ export class CadastrarItemComponent implements OnInit {
   novoItem = new ItemSerie();
 
   constructor(private ref : MatDialogRef<ItensDeSerieComponent>, 
-              private itemService : ItemSerieService) { }
+              private itemService : ItemSerieService,
+              @Inject(MAT_DIALOG_DATA) public data : ItemSerie) {
+
+        if(data && data.id) {
+          this.novoItem = data;
+        }
+  }
 
   ngOnInit(): void {}
 
   salvar() {
     this.itemService.salvar(this.novoItem).subscribe(retorno => {
+      this.refresh.emit(retorno);
+    })
+  }
+
+  atualizar() {
+    this.itemService.atualizar(this.novoItem).subscribe(retorno => {
       this.refresh.emit(retorno);
     })
   }

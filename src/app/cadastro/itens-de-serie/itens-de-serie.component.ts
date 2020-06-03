@@ -15,7 +15,7 @@ import { CadastrarItemComponent } from '@app/cadastro/itens-de-serie/modal/cadas
 export class ItensDeSerieComponent implements OnInit {
 
   dataSource = new MatTableDataSource<ItemSerie>();
-  displayedColumns: string[] = ['id', 'descricao', 'observacao', 'url', 'actions'];
+  displayedColumns: string[] = ['id', 'descricao', 'observacao', 'url', 'editar', 'excluir'];
 
   @ViewChild(MatPaginator, {static: true}) 
   paginator : MatPaginator;
@@ -34,9 +34,11 @@ export class ItensDeSerieComponent implements OnInit {
   }
 
   excluir(id : number) {
-    this.itensDeSericeSerice.excluir(id).subscribe(retorno => {
-      this.initDataSource();
-    })
+    if(confirm("Tem certeza que deseja excluir? ")) {
+      this.itensDeSericeSerice.excluir(id).subscribe(retorno => {
+        this.initDataSource();
+      })
+    }
   }
 
   novo() {
@@ -46,7 +48,10 @@ export class ItensDeSerieComponent implements OnInit {
     })
   }
 
-  editar() {
-
+  editar(obj : ItemSerie) {
+    const dialogRef = this.modal.open(CadastrarItemComponent, {width: '50%', data : obj});
+    dialogRef.componentInstance.refresh.subscribe(retorno => {
+      this.initDataSource();
+    })
   }
 }

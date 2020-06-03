@@ -32,8 +32,8 @@
 
                         <ng-container matColumnDef="observacao">
                             <th mat-header-cell *matHeaderCellDef> Observação </th>
-                            <td mat-cell *matCellDef="let element"> 
-                                {{element.observacao}}
+                            <td mat-cell *matCellDef="let element" title="{{element.observacao}}"> 
+                                {{(element.observacao && element.observacao.length > 30) ? ( element.observacao | slice:0:30 )+'...' : element.observacao}}
                             </td>
                         </ng-container>
 
@@ -44,7 +44,16 @@
                             </td>
                         </ng-container>
 
-                        <ng-container matColumnDef="actions">
+                        <ng-container matColumnDef="editar">
+                            <th mat-header-cell *matHeaderCellDef> Editar </th>
+                            <td mat-cell *matCellDef="let element"> 
+                                <button mat-icon-button color="warn" class="btn text-warning" (click)="editar(element)">
+                                    <mat-icon class="mat-18">edit</mat-icon>
+                                </button>
+                            </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="excluir">
                             <th mat-header-cell *matHeaderCellDef> Excluir </th>
                             <td mat-cell *matCellDef="let element"> 
                                 <button mat-icon-button color="warn" class="btn text-danger" (click)="excluir(element.id)">
