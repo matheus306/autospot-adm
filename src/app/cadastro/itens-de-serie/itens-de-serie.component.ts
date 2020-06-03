@@ -40,7 +40,7 @@ export class ItensDeSerieComponent implements OnInit {
   }
 
   novo() {
-    const dialogRef = this.modal.open(CadastrarItemComponent, {width: '80%'});
+    const dialogRef = this.modal.open(CadastrarItemComponent, {width: '50%'});
     dialogRef.componentInstance.refresh.subscribe(retorno => {
       this.initDataSource();
     })
