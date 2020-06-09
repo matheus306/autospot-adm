@@ -14,9 +14,15 @@ import { LinksComponent } from './links/links.component';
 import { CadastrarUrlComponent } from '@app/cadastro/links/modal'
 import { ItensDeSerieComponent } from '@app/cadastro/itens-de-serie'
 import { CadastrarItemComponent } from '@app/cadastro/itens-de-serie/modal/cadastrar-item'
+import { ListaAutoSpotComponent } from '@app/cadastro/lista-auto-spot'
 
 @NgModule({
-  declarations: [LinksComponent, CadastrarUrlComponent, ItensDeSerieComponent, CadastrarItemComponent],
+  declarations: [
+    LinksComponent, 
+    CadastrarUrlComponent, 
+    ItensDeSerieComponent, 
+    CadastrarItemComponent,
+    ListaAutoSpotComponent],
   imports: [
     CommonModule,
     MatFormFieldModule,

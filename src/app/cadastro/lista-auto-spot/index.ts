@@ -1,0 +1,1 @@
+export * from './lista-auto-spot.component';

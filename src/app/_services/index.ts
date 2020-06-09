@@ -5,3 +5,4 @@ export * from './modelo.service';
 export * from './ano-modelo.service';
 export * from './link.service';
 export * from './item.serie.service';
+export * from './lista-autospot.service';
