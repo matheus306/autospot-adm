@@ -1,1 +1,27 @@
-<p>lista-auto-spot works!</p>
+
+<div class="container-fluid">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <div class="float-left">
+                <h2 class="m-0 font-weight-bold text-primary">Lista Autospot</h2>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive mt-1">
+                <mat-label>Selecione o ano</mat-label>
+                <mat-form-field>
+                    <mat-select required [(ngModel)]="anoSelecionado" (ngModelChange)="recuperarItensDoAno()">
+                        <mat-option>--</mat-option>
+                        <mat-option *ngFor="let ano of anosOpt" [value]="ano">{{ ano }}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <!--div class="row">
+                    <div class="col-xl-6" *ngFor="let item of todosOsItensPossiveis">
+                        <mat-checkbox>{{item.descricao}}</mat-checkbox>
+                    </div>
+                </div-->
+            </div>
+        </div>
+    </div>
+</div>

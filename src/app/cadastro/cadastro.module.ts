@@ -9,12 +9,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import { LinksComponent } from './links/links.component';
 import { CadastrarUrlComponent } from '@app/cadastro/links/modal'
 import { ItensDeSerieComponent } from '@app/cadastro/itens-de-serie'
 import { CadastrarItemComponent } from '@app/cadastro/itens-de-serie/modal/cadastrar-item'
 import { ListaAutoSpotComponent } from '@app/cadastro/lista-auto-spot'
+
+
 
 @NgModule({
   declarations: [
@@ -34,7 +38,9 @@ import { ListaAutoSpotComponent } from '@app/cadastro/lista-auto-spot'
     MatTableModule,
     MatPaginatorModule,
     MatIconModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSelectModule,
+    MatCheckboxModule
   ]
 })
 export class CadastroModule { }

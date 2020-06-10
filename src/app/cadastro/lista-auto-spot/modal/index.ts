@@ -1,0 +1,1 @@
+export * from './dialog-new-list-autospot/dialog-new-list-autospot.component'
