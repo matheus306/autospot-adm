@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-dialog-new-list-autospot',
@@ -7,12 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DialogNewListAutospotComponent implements OnInit {
 
-  constructor() { }
+  constructor(public dialogRef: MatDialogRef<DialogNewListAutospotComponent>) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  criarLista() {
+    this.dialogRef.close(true);
+   }
+
+  fechar() {
+    this.dialogRef.close(false);
   }
-
-  criarLista() { }
-
-  fechar() {}
 }

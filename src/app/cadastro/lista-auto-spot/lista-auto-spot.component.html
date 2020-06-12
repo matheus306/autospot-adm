@@ -10,17 +10,19 @@
             <div class="table-responsive mt-1">
                 <mat-label>Selecione o ano</mat-label>
                 <mat-form-field>
-                    <mat-select required [(ngModel)]="anoSelecionado" (ngModelChange)="recuperarItensDoAno()">
+                    <mat-select required [(ngModel)]="anoSelecionado" (ngModelChange)="recuperarListaPeloAno()">
                         <mat-option>--</mat-option>
                         <mat-option *ngFor="let ano of anosOpt" [value]="ano">{{ ano }}</mat-option>
                     </mat-select>
                 </mat-form-field>
 
-                <!--div class="row">
+                <div class="row">
                     <div class="col-xl-6" *ngFor="let item of todosOsItensPossiveis">
-                        <mat-checkbox>{{item.descricao}}</mat-checkbox>
+                        <mat-checkbox [(ngModel)]="item.checked" (ngModelChange)="addItemLista(item)" [disabled]="!listaAutospot.ano">
+                            {{item.descricao}}
+                        </mat-checkbox>
                     </div>
-                </div-->
+                </div>
             </div>
         </div>
     </div>

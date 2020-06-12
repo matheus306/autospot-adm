@@ -5,6 +5,7 @@ import { ItemSerieService, ListaAutospotService } from '@app/_services';
 import { ItemSerie, ListaAutospot } from '@app/_models';
 import { DialogNewListAutospotComponent } from './modal'
 
+
 @Component({
   selector: 'app-lista-auto-spot',
   templateUrl: './lista-auto-spot.component.html',
@@ -15,38 +16,64 @@ export class ListaAutoSpotComponent implements OnInit {
   anosOpt : Array<number> = [];
   anoSelecionado : number;
   todosOsItensPossiveis : Array<ItemSerie>;
-  listaAutospot : ListaAutospot;
+  listaAutospot : ListaAutospot = {};
 
   constructor(private itemSerieService : ItemSerieService, 
               private listaAutospotService : ListaAutospotService,
               private dialog : MatDialog) { }
 
   ngOnInit(): void {
-    this.inicializarListaAnos();
+    this.inicializarComboAno();
 
     this.itemSerieService.findAll().subscribe(retorno => {
       this.todosOsItensPossiveis = retorno;
     })
   }
 
-  private inicializarListaAnos() {
+  private inicializarComboAno() {
     let anoAtual = new Date().getFullYear() + 1;
     for(let i = 1; i <= 5 + 1; i++) {
       this.anosOpt.push(anoAtual--);
     }
   }
 
-  recuperarItensDoAno() {
+  recuperarListaPeloAno() {
     this.listaAutospotService.findByAno(this.anoSelecionado).subscribe(retorno => {
       this.listaAutospot = retorno;
 
       if(!retorno) {
         this.criarNovaLista();
+      } else {
+        this.listaAutospotService.mergeItensDoAnoItensDaLista(this.listaAutospot, this.todosOsItensPossiveis);
       }
     })
   }
 
+  addItemLista(item : ItemSerie) {
+    if( this.listaAutospot.ano && item.checked ) {
+      this.listaAutospot.itensDeSerie.push(item);
+    } else {
+      this.listaAutospot.itensDeSerie = this.listaAutospot.itensDeSerie.filter(obj => obj.id !== item.id);
+    }
+    this.listaAutospotService.updateLista(this.listaAutospot).subscribe(retorno => {
+      console.log(retorno)
+    })
+  }
+
   private criarNovaLista() {
-    this.dialog.open(DialogNewListAutospotComponent, {width: '30%'});
+    const dialogRef = this.dialog.open(DialogNewListAutospotComponent, {width: '30%'});
+
+    dialogRef.afterClosed().subscribe(retorno => {
+
+      if(retorno) {
+
+        let novaLista = new ListaAutospot();
+        novaLista.ano = this.anoSelecionado;
+
+        this.listaAutospotService.createLista(novaLista).subscribe(retorno => {
+          this.recuperarListaPeloAno();
+        })
+      }
+    })
   }
 }

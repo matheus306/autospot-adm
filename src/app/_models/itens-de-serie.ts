@@ -3,4 +3,5 @@ export class ItemSerie {
     descricao?: string
     observacao? : string
     url? : string
+    checked? : boolean = true
 }
