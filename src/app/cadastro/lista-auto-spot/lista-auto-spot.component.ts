@@ -72,7 +72,7 @@ export class ListaAutoSpotComponent implements OnInit {
   }
 
   private criarNovaLista() {
-    const dialogRef = this.dialog.open(DialogNewListAutospotComponent, {width: '30%'});
+    const dialogRef = this.dialog.open(DialogNewListAutospotComponent);
 
     dialogRef.afterClosed().subscribe(retorno => {
 
