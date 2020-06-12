@@ -38,15 +38,26 @@ export class ListaAutoSpotComponent implements OnInit {
   }
 
   recuperarListaPeloAno() {
-    this.listaAutospotService.findByAno(this.anoSelecionado).subscribe(retorno => {
-      this.listaAutospot = retorno;
+    
+    if(this.anoSelecionado) {
+      this.listaAutospotService.findByAno(this.anoSelecionado).subscribe(retorno => {
 
-      if(!retorno) {
-        this.criarNovaLista();
-      } else {
-        this.listaAutospotService.mergeItensDoAnoItensDaLista(this.listaAutospot, this.todosOsItensPossiveis);
-      }
-    })
+        if(!retorno) {
+          this.criarNovaLista();
+        } else {
+          this.listaAutospot = retorno;
+          this.listaAutospotService.mergeItensDoAnoItensDaLista(this.listaAutospot, this.todosOsItensPossiveis);
+        }
+      })
+    } else {
+      this.limparDados();
+    }
+  }
+
+  private limparDados() {
+    this.anoSelecionado = null;
+    this.listaAutospot = {};
+    this.todosOsItensPossiveis.forEach(obj => { obj.checked = false; });
   }
 
   addItemLista(item : ItemSerie) {
@@ -73,6 +84,8 @@ export class ListaAutoSpotComponent implements OnInit {
         this.listaAutospotService.createLista(novaLista).subscribe(retorno => {
           this.recuperarListaPeloAno();
         })
+      } else {
+        this.limparDados();
       }
     })
   }
