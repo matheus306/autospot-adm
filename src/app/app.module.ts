@@ -6,6 +6,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
+import { CountoModule }  from 'angular2-counto';
+
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import { HomeComponent } from './home';
 import { LoginComponent } from './login';
@@ -20,7 +22,8 @@ import { CadastroModule } from '@app/cadastro'
         HttpClientModule,
         AppRoutingModule,
         CadastroModule,
-        DadosBasicosModule
+        DadosBasicosModule,
+        CountoModule
     ],
     declarations: [
         AppComponent,
