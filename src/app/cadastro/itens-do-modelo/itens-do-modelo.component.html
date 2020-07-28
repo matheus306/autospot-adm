@@ -1,0 +1,27 @@
+
+<div class="container-fluid">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <div class="float-left">
+                <h2 class="m-0 font-weight-bold text-primary">Configurar Itens do Modelo</h2>
+            </div>
+        </div>
+        <div class="card-body">
+            <form class="example-form">
+                <mat-form-field class="example-full-width">
+                    <input type="text"
+                        placeholder="Ex: Honda City 2017"
+                        aria-label="Number"
+                        matInput
+                        [formControl]="filtroCarro"
+                        [matAutocomplete]="auto">
+                    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)='selecionarModelo($event.option.value)'>
+                    <mat-option *ngFor="let option of dadosAutoSpot$ | async" [value]="option" >
+                        {{option.descricao}}
+                    </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+            </form>
+        </div>
+    </div>
+</div>

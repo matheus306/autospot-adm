@@ -4,6 +4,7 @@ import { AuthGuard } from '@app/_helpers';
 import { LinksComponent } from "./links"
 import { ItensDeSerieComponent } from "./itens-de-serie"
 import { ListaAutoSpotComponent } from './lista-auto-spot'
+import { ItensDoModeloComponent } from './itens-do-modelo'
 
 export const CadastroRoutes : Routes = [
     {
@@ -19,6 +20,11 @@ export const CadastroRoutes : Routes = [
     {
         path : 'lista-auto-spot',
         component: ListaAutoSpotComponent, 
+        canActivate: [AuthGuard]
+    },
+    {
+        path : 'itens-modelo',
+        component: ItensDoModeloComponent, 
         canActivate: [AuthGuard]
     }
 ]

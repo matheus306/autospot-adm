@@ -1,0 +1,1 @@
+export * from './itens-do-modelo.component'

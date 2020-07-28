@@ -17,6 +17,7 @@ import { CadastrarUrlComponent } from '@app/cadastro/links/modal'
 import { ItensDeSerieComponent } from '@app/cadastro/itens-de-serie'
 import { CadastrarItemComponent } from '@app/cadastro/itens-de-serie/modal/cadastrar-item'
 import { ListaAutoSpotComponent } from '@app/cadastro/lista-auto-spot'
+import { ItensDoModeloComponent } from '@app/cadastro/itens-do-modelo'
 
 
 
@@ -26,7 +27,8 @@ import { ListaAutoSpotComponent } from '@app/cadastro/lista-auto-spot'
     CadastrarUrlComponent, 
     ItensDeSerieComponent, 
     CadastrarItemComponent,
-    ListaAutoSpotComponent],
+    ListaAutoSpotComponent,
+    ItensDoModeloComponent],
   imports: [
     CommonModule,
     MatFormFieldModule,
