@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { AnoModeloService, ListaAutospotService } from '@app/_services';
 import { ModeloAutospotDTO } from '@app/_dto';
-import { ItemSerie } from '@app/_models'
+import { ItemSerie, AnoModelo } from '@app/_models'
 
 @Component({
   selector: 'app-itens-do-modelo',
@@ -15,7 +15,7 @@ export class ItensDoModeloComponent implements OnInit {
 
   filtroCarro = new FormControl();
   dadosAutoSpot$ : Observable<ModeloAutospotDTO[]>;
-  anoModeloSelecionado : ModeloAutospotDTO;
+  anoModeloSelecionado : AnoModelo;
   todosOsItensPossiveis : Array<ItemSerie>;
 
   constructor(private anoModeloService : AnoModeloService, 
@@ -38,14 +38,30 @@ export class ItensDoModeloComponent implements OnInit {
   }
 
   selecionarModelo(modelo: ModeloAutospotDTO) {
-    this.anoModeloSelecionado = modelo;
+    this.anoModeloService.findById(modelo.codigo).subscribe(result => {
+      this.anoModeloSelecionado = result;
+      this.recuperarListaDoAno();
+    });
+  }
+
+  recuperarListaDoAno() {
     this.todosOsItensPossiveis = [];
-    this.listaAutospotService.findByAno(modelo.ano).subscribe(result => {
+    this.listaAutospotService.findByAno(this.anoModeloSelecionado.ano).subscribe(result => {
       this.todosOsItensPossiveis = result.itensDeSerie;
+
+      for (let item of this.todosOsItensPossiveis) {
+        if( this.anoModeloSelecionado && this.anoModeloSelecionado.itensDeSerie ) {
+          item.checked = this.anoModeloSelecionado.itensDeSerie.find(obj => obj.id == item.id) != null;
+        }
+      }
     })
   }
 
-  addItemLista(item : ItemSerie) {
-    console.log(item.id, this.anoModeloSelecionado.codigo)
+  addRemoveItemLista(item : ItemSerie) {
+    if(item.checked) {
+      this.anoModeloService.addItemDeSerie(this.anoModeloSelecionado, item.id).subscribe();
+    } else {
+      this.anoModeloService.removeItemDeSerie(this.anoModeloSelecionado, item.id).subscribe();
+    }
   }
 }
