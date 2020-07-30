@@ -39,6 +39,7 @@ export class ItensDoModeloComponent implements OnInit {
 
   selecionarModelo(modelo: ModeloAutospotDTO) {
     this.anoModeloSelecionado = modelo;
+    this.todosOsItensPossiveis = [];
     this.listaAutospotService.findByAno(modelo.ano).subscribe(result => {
       this.todosOsItensPossiveis = result.itensDeSerie;
     })
