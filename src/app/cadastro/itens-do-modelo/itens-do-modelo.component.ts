@@ -1,8 +1,10 @@
-import { AnoModeloService } from './../../_services/ano-modelo.service';
-import { ModeloAutospotDTO } from './../../_dto/modelo.autospot';
 import { Observable } from 'rxjs';
 import { FormControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+
+import { AnoModeloService, ListaAutospotService } from '@app/_services';
+import { ModeloAutospotDTO } from '@app/_dto';
+import { ItemSerie } from '@app/_models'
 
 @Component({
   selector: 'app-itens-do-modelo',
@@ -14,8 +16,10 @@ export class ItensDoModeloComponent implements OnInit {
   filtroCarro = new FormControl();
   dadosAutoSpot$ : Observable<ModeloAutospotDTO[]>;
   anoModeloSelecionado : ModeloAutospotDTO;
+  todosOsItensPossiveis : Array<ItemSerie>;
 
-  constructor(private anoModeloService : AnoModeloService) { }
+  constructor(private anoModeloService : AnoModeloService, 
+              private listaAutospotService : ListaAutospotService) { }
 
   ngOnInit(): void {
     this.anoModeloSelecionado = new ModeloAutospotDTO();
@@ -35,5 +39,12 @@ export class ItensDoModeloComponent implements OnInit {
 
   selecionarModelo(modelo: ModeloAutospotDTO) {
     this.anoModeloSelecionado = modelo;
+    this.listaAutospotService.findByAno(modelo.ano).subscribe(result => {
+      this.todosOsItensPossiveis = result.itensDeSerie;
+    })
+  }
+
+  addItemLista(item : ItemSerie) {
+    console.log(item.id, this.anoModeloSelecionado.codigo)
   }
 }
