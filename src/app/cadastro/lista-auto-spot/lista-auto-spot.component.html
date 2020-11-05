@@ -18,7 +18,7 @@
 
                 <div class="row">
                     <div class="col-xl-6" *ngFor="let item of todosOsItensPossiveis">
-                        <mat-checkbox [(ngModel)]="item.checked" (ngModelChange)="addItemLista(item)" [disabled]="!listaAutospot.ano">
+                        <mat-checkbox [checked]="item.checked" [(ngModel)]="item.checked" (ngModelChange)="addItemLista(item)" [disabled]="!listaAutospot.ano">
                             {{item.descricao}}
                         </mat-checkbox>
                     </div>

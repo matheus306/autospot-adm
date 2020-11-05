@@ -47,6 +47,10 @@ export class ItensDoModeloComponent implements OnInit {
   recuperarListaDoAno() {
     this.todosOsItensPossiveis = [];
     this.listaAutospotService.findByAno(this.anoModeloSelecionado.ano).subscribe(result => {
+      if(result == null) {
+        alert('Não existe uma lista autospot configurada para o ano selecionado.');
+        return;
+      }
       this.todosOsItensPossiveis = result.itensDeSerie;
 
       for (let item of this.todosOsItensPossiveis) {

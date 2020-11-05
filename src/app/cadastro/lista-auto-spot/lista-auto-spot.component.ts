@@ -64,11 +64,13 @@ export class ListaAutoSpotComponent implements OnInit {
     if( this.listaAutospot.ano && item.checked ) {
       this.listaAutospot.itensDeSerie.push(item);
     } else {
-      this.listaAutospot.itensDeSerie = this.listaAutospot.itensDeSerie.filter(obj => obj.id !== item.id);
+      if(this.listaAutospotService.isItemAssociadoModelo(this.listaAutospot.ano, item.id)) {
+        item.checked = true;
+      } else {
+        this.listaAutospot.itensDeSerie = this.listaAutospot.itensDeSerie.filter(obj => obj.id !== item.id);
+      }
     }
-    this.listaAutospotService.updateLista(this.listaAutospot).subscribe(retorno => {
-      console.log(retorno)
-    })
+    this.listaAutospotService.updateLista(this.listaAutospot).subscribe()
   }
 
   private criarNovaLista() {

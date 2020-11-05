@@ -5,6 +5,7 @@ import { LinksComponent } from "./links"
 import { ItensDeSerieComponent } from "./itens-de-serie"
 import { ListaAutoSpotComponent } from './lista-auto-spot'
 import { ItensDoModeloComponent } from './itens-do-modelo'
+import { FichaTecnicaDoModeloComponent } from './ficha-tecnica-modelo'
 
 export const CadastroRoutes : Routes = [
     {
@@ -25,6 +26,11 @@ export const CadastroRoutes : Routes = [
     {
         path : 'itens-modelo',
         component: ItensDoModeloComponent, 
+        canActivate: [AuthGuard]
+    },
+    {
+        path : 'ficha-tecnica-modelo',
+        component: FichaTecnicaDoModeloComponent, 
         canActivate: [AuthGuard]
     }
 ]

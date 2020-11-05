@@ -16,6 +16,10 @@ export class ListaAutospotService {
     return this.http.get<ListaAutospot>(`${environment.apiUrl}/api/v1/lista-auto-spot/ano/${ano}`);
   }
 
+  isItemAssociadoModelo(ano : number, item : number) {
+    return this.http.get<Boolean>(`${environment.apiUrl}/api/v1/lista-auto-spot/ano/${ano}/item/${item}`);
+  }
+
   createLista(lista : ListaAutospot) {
     return this.http.post(`${environment.apiUrl}/api/v1/lista-auto-spot/`, lista);
   }
