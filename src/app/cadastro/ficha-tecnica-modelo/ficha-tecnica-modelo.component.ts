@@ -2,7 +2,7 @@ import { Observable } from 'rxjs';
 import { FormControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
-import { AnoModeloService } from '@app/_services';
+import { AnoModeloService, FichaTecnicaService } from '@app/_services';
 import { ModeloAutospotDTO } from '@app/_dto';
 import { AnoModelo } from '@app/_models'
 
@@ -13,16 +13,21 @@ import { AnoModelo } from '@app/_models'
 })
 export class FichaTecnicaDoModeloComponent implements OnInit {
 
+  dadosBasicos : any;
   filtroCarro = new FormControl();
   dadosAutoSpot$ : Observable<ModeloAutospotDTO[]>;
   anoModeloSelecionado : AnoModelo;
 
-  constructor(private anoModeloService : AnoModeloService) { }
+  constructor(private anoModeloService : AnoModeloService, private fichaTecnicaService : FichaTecnicaService) { }
 
   ngOnInit(): void {
     this.anoModeloSelecionado = new ModeloAutospotDTO();
     this.filtroCarro.valueChanges.subscribe(valor => {
       this.consultarDadosVeiculo(valor);
+    })
+
+    this.fichaTecnicaService.init().subscribe(dados => {
+      this.dadosBasicos = dados;
     })
   }
 
@@ -38,6 +43,9 @@ export class FichaTecnicaDoModeloComponent implements OnInit {
   selecionarModelo(modelo: ModeloAutospotDTO) {
     this.anoModeloService.findById(modelo.codigo).subscribe(result => {
       this.anoModeloSelecionado = result;
+      this.fichaTecnicaService.findByAnoModelo(result.id).subscribe(fichas => {
+        console.log(fichas)
+      })
     });
   }
 }

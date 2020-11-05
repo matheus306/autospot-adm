@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-
 import { ListaAutospot, ItemSerie } from '@app/_models';
 import { environment } from '@environments/environment'
 
