@@ -2,9 +2,9 @@ import { AnoModelo } from './ano-modelo';
 
 export class FichaTecnica {
 
-    id?: number
+    id?: number;
 
-    anoNodelo?: AnoModelo;
+    anoModelo?: AnoModelo;
     
     potencia?: number;
 

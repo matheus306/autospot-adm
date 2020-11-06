@@ -1,10 +1,12 @@
 import { Observable } from 'rxjs';
 import { FormControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 
 import { AnoModeloService, FichaTecnicaService } from '@app/_services';
 import { ModeloAutospotDTO } from '@app/_dto';
 import { AnoModelo } from '@app/_models'
+import { CadastrarFichaTecnicaComponent } from './modal/cadastrar-ficha-tecnica'
 
 @Component({
   selector: 'app-itens-do-modelo',
@@ -18,7 +20,9 @@ export class FichaTecnicaDoModeloComponent implements OnInit {
   dadosAutoSpot$ : Observable<ModeloAutospotDTO[]>;
   anoModeloSelecionado : AnoModelo;
 
-  constructor(private anoModeloService : AnoModeloService, private fichaTecnicaService : FichaTecnicaService) { }
+  constructor(private anoModeloService : AnoModeloService, 
+    private fichaTecnicaService : FichaTecnicaService,
+    private modal : MatDialog) { }
 
   ngOnInit(): void {
     this.anoModeloSelecionado = new ModeloAutospotDTO();
@@ -38,6 +42,14 @@ export class FichaTecnicaDoModeloComponent implements OnInit {
 
   displayFn(obj: ModeloAutospotDTO) : string {
     return obj && obj.descricao ? obj.descricao : "";
+  }
+
+  novo() {
+    let obj = {dadosBasicos : this.dadosBasicos, anoModeloSelecionado :  this.anoModeloSelecionado}
+    const dialogRef = this.modal.open(CadastrarFichaTecnicaComponent, {width: '90%', data: obj});
+    dialogRef.componentInstance.refresh.subscribe(retorno => {
+      console.log('oi')
+    })
   }
 
   selecionarModelo(modelo: ModeloAutospotDTO) {

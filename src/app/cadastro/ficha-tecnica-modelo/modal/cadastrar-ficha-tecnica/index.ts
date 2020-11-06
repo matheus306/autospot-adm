@@ -1,0 +1,1 @@
+export * from './cadastrar-ficha-tecnica.component'

@@ -18,4 +18,8 @@ export class FichaTecnicaService {
   findByAnoModelo(id: number) {
     return this.http.get<FichaTecnica>(`${environment.apiUrl}/api/v1/ficha-tecnica/find/by/ano-modelo/${id}`);
   }
+
+  salvar(fichaTecnica: FichaTecnica) {
+    return this.http.post(`${environment.apiUrl}/api/v1/ficha-tecnica/`, fichaTecnica);
+  }
 }

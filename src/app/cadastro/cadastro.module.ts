@@ -19,6 +19,7 @@ import { CadastrarItemComponent } from '@app/cadastro/itens-de-serie/modal/cadas
 import { ListaAutoSpotComponent } from '@app/cadastro/lista-auto-spot'
 import { ItensDoModeloComponent } from '@app/cadastro/itens-do-modelo'
 import { FichaTecnicaDoModeloComponent } from '@app/cadastro/ficha-tecnica-modelo'
+import { CadastrarFichaTecnicaComponent } from '@app/cadastro/ficha-tecnica-modelo/modal/cadastrar-ficha-tecnica'
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { FichaTecnicaDoModeloComponent } from '@app/cadastro/ficha-tecnica-model
     CadastrarItemComponent,
     ListaAutoSpotComponent,
     ItensDoModeloComponent,
-    FichaTecnicaDoModeloComponent],
+    FichaTecnicaDoModeloComponent,
+    CadastrarFichaTecnicaComponent],
   imports: [
     CommonModule,
     MatFormFieldModule,

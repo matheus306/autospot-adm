@@ -5,6 +5,11 @@
             <div class="float-left">
                 <h2 class="m-0 font-weight-bold text-primary">Ficha Técnica do Modelo</h2>
             </div>
+            <div class="float-right">
+                <button class="btn btn-info"  (click)="novo()" *ngIf="anoModeloSelecionado.id">
+                    Nova Ficha
+                </button>
+            </div>
         </div>
         <div class="card-body">
             <form class="example-form">
