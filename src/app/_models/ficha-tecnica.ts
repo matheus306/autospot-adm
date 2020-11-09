@@ -72,5 +72,5 @@ export class FichaTecnica {
 
     torqueCombinadoE?: number;
 
-    tipoFonteEnergetica?: number;
+    tipoFonteEnergetica?: any;
 }

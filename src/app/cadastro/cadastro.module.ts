@@ -45,7 +45,7 @@ import { CadastrarFichaTecnicaComponent } from '@app/cadastro/ficha-tecnica-mode
     MatIconModule,
     MatDialogModule,
     MatSelectModule,
-    MatCheckboxModule
+    MatCheckboxModule,
   ]
 })
 export class CadastroModule { }

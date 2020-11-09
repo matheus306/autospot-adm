@@ -27,6 +27,46 @@
                     </mat-autocomplete>
                 </mat-form-field>
             </form>
+
+            <div class="card" style="width: 18rem;" *ngIf="anoModeloSelecionado.fichaTecnica && anoModeloSelecionado.fichaTecnica.length > 0">
+                <div class="card-body" *ngFor="let item of anoModeloSelecionado.fichaTecnica">
+                    <h2 class="card-title">{{item.tipoFonteEnergetica.descricao}}</h2>
+                    <div><span style="font-weight: bold;">Potência: </span> {{item.potencia}}</div>
+                    <div><span style="font-weight: bold;">Torque: </span> {{item.torque}}</div>
+                    <div><span style="font-weight: bold;">Nº de Marchas: </span> {{item.numeroDeMarchas}}</div>
+                    <div><span style="font-weight: bold;">Alimentação: </span> {{item.alimentacaoEnum.descricao}}</div>
+                    <div><span style="font-weight: bold;">Largura: </span> {{item.largura}}</div>
+                    <div><span style="font-weight: bold;">Altura: </span> {{item.altura}}</div>
+                    <div><span style="font-weight: bold;">Comprimento: </span> {{item.comprimento}}</div>
+                    <div><span style="font-weight: bold;">Tração: </span> {{item.tracaoEnum.descricao}}</div>
+                    <div><span style="font-weight: bold;">Direção: </span> {{item.direcaoEnum.descricao}}</div>
+                    <div><span style="font-weight: bold;">Rodas: </span> {{item.rodasEnum.descricao}}</div>
+                    <div><span style="font-weight: bold;">Pneus: </span> {{item.pneus}}</div>
+                    <div><span style="font-weight: bold;">Peso: </span> {{item.peso}}</div>
+                    <div><span style="font-weight: bold;">PBT: </span> {{item.pbt}}</div>
+                    <div><span style="font-weight: bold;">Porta Malas: </span> {{item.portaMalas}}</div>
+                    <div><span style="font-weight: bold;">Tanque de Combustível: </span> {{item.tanqueCombustivel}}</div>
+                    <div><span style="font-weight: bold;">Qtd Motores Elétricos: </span> {{item.quantidadeDeMotoresEletricos}}</div>
+                    <div><span style="font-weight: bold;">Potência G: </span> {{item.potenciaG}}</div>
+                    <div><span style="font-weight: bold;">Potência E: </span> {{item.potenciaE}}</div>
+                    <div><span style="font-weight: bold;">Torque G: </span> {{item.torqueG}}</div>
+                    <div><span style="font-weight: bold;">Torque E: </span> {{item.torqueE}}</div>
+                    <div><span style="font-weight: bold;">Cilindrada: </span> {{item.cilindrada}}</div>
+                    <div><span style="font-weight: bold;">Cilindros: </span> {{item.qtdCilindros}}</div>
+                    <div><span style="font-weight: bold;">Qtd Valvulas: </span> {{item.qtdValvulas}}</div>
+                    <div><span style="font-weight: bold;">Potência Elétrica: </span> {{item.potenciaEletrica}}</div>
+                    <div><span style="font-weight: bold;">Torque Eletrico: </span> {{item.torqueEletrico}}</div>
+                    <div><span style="font-weight: bold;">Potência Combinada: </span> {{item.potenciaCombinada}}</div>
+                    <div><span style="font-weight: bold;">Torque Combinado: </span> {{item.torqueCombinado}}</div>
+                    <div><span style="font-weight: bold;">Quantidade de Motores: </span> {{item.quantidadeDeMotores}}</div>
+                    <div><span style="font-weight: bold;">Potência Combinada G: </span> {{item.potenciaCombinadaG}}</div>
+                    <div><span style="font-weight: bold;">Potência Combinada E: </span> {{item.potenciaCombinadaE}}</div>
+                    <div><span style="font-weight: bold;">Torque Combinado G: </span> {{item.torqueCombinadoG}}</div>
+                    <div><span style="font-weight: bold;">Torque Combinado E: </span> {{item.torqueCombinadoE}}</div>
+                    <a href="#" class="card-link">Card link</a>
+                    <a href="#" class="card-link">Another link</a>
+                </div>
+            </div>
         </div>
     </div>
 </div>
