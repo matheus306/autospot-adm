@@ -38,5 +38,7 @@ export class CadastrarFichaTecnicaComponent implements OnInit {
 
   atualizar(){}
 
-  close(){}
+  close(){
+    this.ref.close()
+  }
 }
