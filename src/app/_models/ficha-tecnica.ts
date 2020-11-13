@@ -10,11 +10,11 @@ export class FichaTecnica {
 
     torque?: number;
 
-    transmissaoEnum?: number;
+    transmissaoEnum?: any;
 
     numeroDeMarchas?: number;
 
-    alimentacaoEnum?: number;
+    alimentacaoEnum?: any;
 
     largura?: number;
 
@@ -22,11 +22,11 @@ export class FichaTecnica {
 
     comprimento?: number;
 
-    tracaoEnum?: number;
+    tracaoEnum?: any;
 
-    direcaoEnum?: number;
+    direcaoEnum?: any;
 
-    rodasEnum?: number;
+    rodasEnum?: any;
 
     pneus?: string;
 

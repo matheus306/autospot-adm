@@ -5,7 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 
 import { AnoModeloService, FichaTecnicaService } from '@app/_services';
 import { ModeloAutospotDTO } from '@app/_dto';
-import { AnoModelo } from '@app/_models'
+import { AnoModelo, FichaTecnica } from '@app/_models'
 import { CadastrarFichaTecnicaComponent } from './modal/cadastrar-ficha-tecnica'
 
 @Component({
@@ -47,17 +47,22 @@ export class FichaTecnicaDoModeloComponent implements OnInit {
   novo() {
     let obj = {dadosBasicos : this.dadosBasicos, anoModeloSelecionado :  this.anoModeloSelecionado}
     const dialogRef = this.modal.open(CadastrarFichaTecnicaComponent, {width: '90%', data: obj});
-    dialogRef.componentInstance.refresh.subscribe(retorno => {
-      console.log('oi')
-    })
+    dialogRef.componentInstance.refresh.subscribe(retorno => { })
+  }
+
+  editar(fichaTecnicaSelecionada : FichaTecnica) {
+    let obj = {
+                dadosBasicos : this.dadosBasicos, 
+                anoModeloSelecionado :  this.anoModeloSelecionado,
+                fichaTecnica: fichaTecnicaSelecionada
+              }
+    const dialogRef = this.modal.open(CadastrarFichaTecnicaComponent, {width: '90%', data: obj});
+    dialogRef.componentInstance.refresh.subscribe(retorno => { })
   }
 
   selecionarModelo(modelo: ModeloAutospotDTO) {
     this.anoModeloService.findById(modelo.codigo).subscribe(result => {
       this.anoModeloSelecionado = result;
-      this.fichaTecnicaService.findByAnoModelo(result.id).subscribe(fichas => {
-        console.log(fichas)
-      })
     });
   }
 }
