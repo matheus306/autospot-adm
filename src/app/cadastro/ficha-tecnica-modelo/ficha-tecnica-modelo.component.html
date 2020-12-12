@@ -31,38 +31,38 @@
             <div class="card" style="width: 18rem;" *ngIf="anoModeloSelecionado.fichaTecnica && anoModeloSelecionado.fichaTecnica.length > 0">
                 <div class="card-body" *ngFor="let item of anoModeloSelecionado.fichaTecnica">
                     <h2 class="card-title">{{item.tipoFonteEnergetica.descricao}}</h2>
-                    <div><span style="font-weight: bold;">Potência: </span> {{item.potencia}}</div>
-                    <div><span style="font-weight: bold;">Torque: </span> {{item.torque}}</div>
-                    <div><span style="font-weight: bold;">Nº de Marchas: </span> {{item.numeroDeMarchas}}</div>
-                    <div><span style="font-weight: bold;">Alimentação: </span> {{item.alimentacaoEnum.descricao}}</div>
-                    <div><span style="font-weight: bold;">Largura: </span> {{item.largura}}</div>
-                    <div><span style="font-weight: bold;">Altura: </span> {{item.altura}}</div>
-                    <div><span style="font-weight: bold;">Comprimento: </span> {{item.comprimento}}</div>
-                    <div><span style="font-weight: bold;">Tração: </span> {{item.tracaoEnum.descricao}}</div>
-                    <div><span style="font-weight: bold;">Direção: </span> {{item.direcaoEnum.descricao}}</div>
-                    <div><span style="font-weight: bold;">Rodas: </span> {{item.rodasEnum.descricao}}</div>
-                    <div><span style="font-weight: bold;">Pneus: </span> {{item.pneus}}</div>
-                    <div><span style="font-weight: bold;">Peso: </span> {{item.peso}}</div>
-                    <div><span style="font-weight: bold;">PBT: </span> {{item.pbt}}</div>
-                    <div><span style="font-weight: bold;">Porta Malas: </span> {{item.portaMalas}}</div>
-                    <div><span style="font-weight: bold;">Tanque de Combustível: </span> {{item.tanqueCombustivel}}</div>
-                    <div><span style="font-weight: bold;">Qtd Motores Elétricos: </span> {{item.quantidadeDeMotoresEletricos}}</div>
-                    <div><span style="font-weight: bold;">Potência G: </span> {{item.potenciaG}}</div>
-                    <div><span style="font-weight: bold;">Potência E: </span> {{item.potenciaE}}</div>
-                    <div><span style="font-weight: bold;">Torque G: </span> {{item.torqueG}}</div>
-                    <div><span style="font-weight: bold;">Torque E: </span> {{item.torqueE}}</div>
-                    <div><span style="font-weight: bold;">Cilindrada: </span> {{item.cilindrada}}</div>
-                    <div><span style="font-weight: bold;">Cilindros: </span> {{item.qtdCilindros}}</div>
-                    <div><span style="font-weight: bold;">Qtd Valvulas: </span> {{item.qtdValvulas}}</div>
-                    <div><span style="font-weight: bold;">Potência Elétrica: </span> {{item.potenciaEletrica}}</div>
-                    <div><span style="font-weight: bold;">Torque Eletrico: </span> {{item.torqueEletrico}}</div>
-                    <div><span style="font-weight: bold;">Potência Combinada: </span> {{item.potenciaCombinada}}</div>
-                    <div><span style="font-weight: bold;">Torque Combinado: </span> {{item.torqueCombinado}}</div>
-                    <div><span style="font-weight: bold;">Quantidade de Motores: </span> {{item.quantidadeDeMotores}}</div>
-                    <div><span style="font-weight: bold;">Potência Combinada G: </span> {{item.potenciaCombinadaG}}</div>
-                    <div><span style="font-weight: bold;">Potência Combinada E: </span> {{item.potenciaCombinadaE}}</div>
-                    <div><span style="font-weight: bold;">Torque Combinado G: </span> {{item.torqueCombinadoG}}</div>
-                    <div><span style="font-weight: bold;">Torque Combinado E: </span> {{item.torqueCombinadoE}}</div>
+                    <div *ngIf="item.potencia"><span style="font-weight: bold;">Potência: </span> {{item.potencia}}</div>
+                    <div *ngIf="item.torque"><span style="font-weight: bold;">Torque: </span> {{item.torque}}</div>
+                    <div *ngIf="item.numeroDeMarchas"><span style="font-weight: bold;">Nº de Marchas: </span> {{item.numeroDeMarchas}}</div>
+                    <div *ngIf="item.alimentacaoEnum"><span style="font-weight: bold;">Alimentação: </span> {{item.alimentacaoEnum.descricao}}</div>
+                    <div *ngIf="item.largura"><span style="font-weight: bold;">Largura: </span> {{item.largura}}</div>
+                    <div *ngIf="item.altura"><span style="font-weight: bold;">Altura: </span> {{item.altura}}</div>
+                    <div *ngIf="item.comprimento"><span style="font-weight: bold;">Comprimento: </span> {{item.comprimento}}</div>
+                    <div *ngIf="item.tracaoEnum"><span style="font-weight: bold;">Tração: </span> {{item.tracaoEnum.descricao}}</div>
+                    <div *ngIf="item.direcaoEnum"><span style="font-weight: bold;">Direção: </span> {{item.direcaoEnum.descricao}}</div>
+                    <div *ngIf="item.rodasEnum"><span style="font-weight: bold;">Rodas: </span> {{item.rodasEnum.descricao}}</div>
+                    <div *ngIf="item.pneus"><span style="font-weight: bold;">Pneus: </span> {{item.pneus}}</div>
+                    <div *ngIf="item.peso"><span style="font-weight: bold;">Peso: </span> {{item.peso}}</div>
+                    <div *ngIf="item.pbt"><span style="font-weight: bold;">PBT: </span> {{item.pbt}}</div>
+                    <div *ngIf="item.portaMalas"><span style="font-weight: bold;">Porta Malas: </span> {{item.portaMalas}}</div>
+                    <div *ngIf="item.tanqueCombustivel"><span style="font-weight: bold;">Tanque de Combustível: </span> {{item.tanqueCombustivel}}</div>
+                    <div *ngIf="item.quantidadeDeMotoresEletricos"><span style="font-weight: bold;">Qtd Motores Elétricos: </span> {{item.quantidadeDeMotoresEletricos}}</div>
+                    <div *ngIf="item.potenciaG"><span style="font-weight: bold;">Potência G: </span> {{item.potenciaG}}</div>
+                    <div *ngIf="item.potenciaE"><span style="font-weight: bold;">Potência E: </span> {{item.potenciaE}}</div>
+                    <div *ngIf="item.torqueG"><span style="font-weight: bold;">Torque G: </span> {{item.torqueG}}</div>
+                    <div *ngIf="item.torqueE"><span style="font-weight: bold;">Torque E: </span> {{item.torqueE}}</div>
+                    <div *ngIf="item.cilindrada"><span style="font-weight: bold;">Cilindrada: </span> {{item.cilindrada}}</div>
+                    <div *ngIf="item.qtdCilindros"><span style="font-weight: bold;">Cilindros: </span> {{item.qtdCilindros}}</div>
+                    <div *ngIf="item.qtdValvulas"><span style="font-weight: bold;">Qtd Valvulas: </span> {{item.qtdValvulas}}</div>
+                    <div *ngIf="item.potenciaEletrica"><span style="font-weight: bold;">Potência Elétrica: </span> {{item.potenciaEletrica}}</div>
+                    <div *ngIf="item.torqueEletrico"><span style="font-weight: bold;">Torque Eletrico: </span> {{item.torqueEletrico}}</div>
+                    <div *ngIf="item.potenciaCombinada"><span style="font-weight: bold;">Potência Combinada: </span> {{item.potenciaCombinada}}</div>
+                    <div *ngIf="item.torqueCombinado"><span style="font-weight: bold;">Torque Combinado: </span> {{item.torqueCombinado}}</div>
+                    <div *ngIf="item.quantidadeDeMotores"><span style="font-weight: bold;">Quantidade de Motores: </span> {{item.quantidadeDeMotores}}</div>
+                    <div *ngIf="item.potenciaCombinadaG"><span style="font-weight: bold;">Potência Combinada G: </span> {{item.potenciaCombinadaG}}</div>
+                    <div *ngIf="item.potenciaCombinadaE"><span style="font-weight: bold;">Potência Combinada E: </span> {{item.potenciaCombinadaE}}</div>
+                    <div *ngIf="item.torqueCombinadoG"><span style="font-weight: bold;">Torque Combinado G: </span> {{item.torqueCombinadoG}}</div>
+                    <div *ngIf="item.torqueCombinadoE"><span style="font-weight: bold;">Torque Combinado E: </span> {{item.torqueCombinadoE}}</div>
 
                     <button (click)="editar(item)" type="button" class="btn btn-outline-primary btn-sm mt-2">Editar</button>
                     <button (click)="excluir(item)"type="button" class="btn btn-outline-danger btn-sm mt-2 ml-2">Excluir</button>
