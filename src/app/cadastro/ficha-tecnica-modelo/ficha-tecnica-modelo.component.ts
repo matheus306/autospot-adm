@@ -47,7 +47,17 @@ export class FichaTecnicaDoModeloComponent implements OnInit {
   novo() {
     let obj = {dadosBasicos : this.dadosBasicos, anoModeloSelecionado :  this.anoModeloSelecionado}
     const dialogRef = this.modal.open(CadastrarFichaTecnicaComponent, {width: '90%', data: obj});
-    dialogRef.componentInstance.refresh.subscribe(retorno => { })
+    dialogRef.componentInstance.refresh.subscribe(retorno => {
+      this.selecionarModelo(new ModeloAutospotDTO(this.anoModeloSelecionado.id));
+    })
+  }
+
+  excluir(fichaTecnicaSelecionada : FichaTecnica) {
+    if(confirm('Deseja excluir a Ficha Técnica ?')) {
+      this.fichaTecnicaService.excluir(fichaTecnicaSelecionada.id).subscribe(ret => {
+        this.selecionarModelo(new ModeloAutospotDTO(this.anoModeloSelecionado.id));
+      })
+    }
   }
 
   editar(fichaTecnicaSelecionada : FichaTecnica) {
@@ -57,7 +67,9 @@ export class FichaTecnicaDoModeloComponent implements OnInit {
                 fichaTecnica: fichaTecnicaSelecionada
               }
     const dialogRef = this.modal.open(CadastrarFichaTecnicaComponent, {width: '90%', data: obj});
-    dialogRef.componentInstance.refresh.subscribe(retorno => { })
+    dialogRef.componentInstance.refresh.subscribe(retorno => {
+      this.selecionarModelo(new ModeloAutospotDTO(this.anoModeloSelecionado.id));
+    })
   }
 
   selecionarModelo(modelo: ModeloAutospotDTO) {

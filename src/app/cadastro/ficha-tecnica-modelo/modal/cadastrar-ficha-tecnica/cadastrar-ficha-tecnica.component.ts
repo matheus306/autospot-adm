@@ -77,12 +77,14 @@ export class CadastrarFichaTecnicaComponent implements OnInit {
   }
 
   salvar() {
+    debugger
     this.fichaTecnicaService.salvar(this.fichaTecnica).subscribe(retorno => {
-      console.log(retorno);
     });
   }
 
-  atualizar(){}
+  atualizar(){
+    
+  }
 
   close(){
     this.ref.close()

@@ -4,4 +4,10 @@ export class ModeloAutospotDTO {
     marca: string;
     modelo: string;
     ano: number;
+
+    constructor()
+    constructor(id: number)
+    constructor(codigo?: number) {
+        this.codigo = codigo;
+    }
 }

@@ -22,4 +22,12 @@ export class FichaTecnicaService {
   salvar(fichaTecnica: FichaTecnica) {
     return this.http.post(`${environment.apiUrl}/api/v1/ficha-tecnica/`, fichaTecnica);
   }
+
+  excluir (id : number) {
+    return this.http.delete<FichaTecnica[]>(`${environment.apiUrl}/api/v1/ficha-tecnica/${id}`);
+  }
+
+  editar(fichaTecnica: FichaTecnica) {
+    return this.http.post(`${environment.apiUrl}/api/v1/ficha-tecnica/`, fichaTecnica);
+  }
 }
