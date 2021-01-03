@@ -2,150 +2,146 @@
 <div mat-dialog-content>
     <form class="mt-3">
         <div class="form-group">
-            <label>Tipo Fonte Energética</label>
-            <select class="form-control" style="width: 20%;" [(ngModel)]="fichaTecnica.tipoFonteEnergetica" name="tipoFonteEnergetica"> 
+            <label>Tipo Fonte Energética {{isDiesel}}</label>
+            <select class="form-control" style="width: 20%;" [(ngModel)]="fichaTecnica.tipoFonteEnergetica" name="tipoFonteEnergetica" (ngModelChange)="tipoFonteChange($event)"> 
                 <option *ngFor="let opt of dadosBasicos.tipoFonteEnergetica" [ngValue]="opt">{{opt.descricao}}</option>
             </select>
         </div>
-        <div class="form-group">
-          <label for="potencia">Potência</label>
+        <div class="form-group" *ngIf="isGasolina || isDiesel || isEtanol || isEletrico || isHibrido">
+          <label for="potencia">Potência</label> 
           <input id="potencia" type="number" [(ngModel)]="fichaTecnica.potencia" name="potencia" class="form-control" style="width: 20%;">
         </div>
-        <div class="form-group">
+        <div class="form-group" *ngIf="isGasolina || isDiesel || isEtanol || isEletrico || isHibrido || isHibridoFlex">
             <label for="torque">Torque</label>
             <input id="torque" type="number" [(ngModel)]="fichaTecnica.torque" name="torque" class="form-control" style="width: 20%;">
         </div>
-        <div class="form-group">
+        <div class="form-group" *ngIf="isGasolina || isDiesel || isEtanol || isFlex || isHibrido || isHibridoFlex">
             <label for="transmissao">Transmissão</label>
             <select [compareWith]="compareFn" class="form-control" style="width: 20%;" [(ngModel)]="fichaTecnica.transmissaoEnum" name="transmissaoEnum">
                 <option *ngFor="let opt of dadosBasicos.transmissaoEnum; " [ngValue]="opt">{{opt.descricao}}</option>
             </select>
         </div>
-        <div class="form-group">
+        <div class="form-group" *ngIf="isGasolina || isDiesel || isEtanol || isFlex || isHibrido || isHibridoFlex">
             <label for="numeroDeMarchas">Nº de Marchas</label>
             <input id="numeroDeMarchas" type="number" [(ngModel)]="fichaTecnica.numeroDeMarchas" name="numeroDeMarchas" class="form-control" style="width: 20%;">
         </div>
-        <div class="form-group">
+        <div class="form-group" *ngIf="isGasolina || isDiesel || isEtanol || isFlex || isHibrido || isHibridoFlex">
             <label for="alimentacao">Alimentação</label>
             <select [compareWith]="compareFn" class="form-control" style="width: 20%;" [(ngModel)]="fichaTecnica.alimentacaoEnum" name="alimentacaoEnum">
                 <option *ngFor="let opt of dadosBasicos.alimentacaoEnum" [ngValue]="opt">{{opt.descricao}}</option>
             </select>
         </div>
-        <div class="form-group">
+        <div class="form-group" *ngIf="isGasolina || isDiesel || isEtanol || isFlex || isHibrido || isHibridoFlex || isEletrico">
             <label for="largura">Largura</label>
             <input id="largura" type="number" [(ngModel)]="fichaTecnica.largura" name="largura" class="form-control" style="width: 20%;">
         </div>
-        <div class="form-group">
+        <div class="form-group" *ngIf="isGasolina || isDiesel || isEtanol || isFlex || isHibrido || isHibridoFlex || isEletrico">
             <label for="altura">Altura</label>
             <input id="altura" type="number" [(ngModel)]="fichaTecnica.altura" name="altura" class="form-control" style="width: 20%;">
         </div>
-        <div class="form-group">
+        <div class="form-group" *ngIf="isGasolina || isDiesel || isEtanol || isFlex || isHibrido || isHibridoFlex || isEletrico">
             <label for="comprimento">Comprimento</label>
             <input id="comprimento" type="number" [(ngModel)]="fichaTecnica.comprimento" name="comprimento" class="form-control" style="width: 20%;">
         </div>
-        <div class="form-group">
+        <div class="form-group" *ngIf="isGasolina || isDiesel || isEtanol || isFlex || isHibrido || isHibridoFlex || isEletrico">
             <label for="tracao">Tração</label>
             <select [compareWith]="compareFn" class="form-control" style="width: 20%;" [(ngModel)]="fichaTecnica.tracaoEnum" name="tracaoEnum">
                 <option *ngFor="let opt of dadosBasicos.tracaoEnum" [ngValue]="opt">{{opt.descricao}}</option>
             </select>
         </div>
-        <div class="form-group">
+        <div class="form-group" *ngIf="isGasolina || isDiesel || isEtanol || isFlex || isHibrido || isHibridoFlex || isEletrico">
             <label for="direcao">Direção</label>
             <select [compareWith]="compareFn" class="form-control" style="width: 20%;" [(ngModel)]="fichaTecnica.direcaoEnum"  name="direcaoEnum"> 
                 <option *ngFor="let opt of dadosBasicos.direcaoEnum" [ngValue]="opt">{{opt.descricao}}</option>
             </select>
         </div>
-        <div class="form-group">
+        <div class="form-group" *ngIf="isGasolina || isDiesel || isEtanol || isFlex || isHibrido || isHibridoFlex || isEletrico">
             <label for="rodas">Rodas</label>
             <select [compareWith]="compareFn" class="form-control" style="width: 20%;" [(ngModel)]="fichaTecnica.rodasEnum" name="rodasEnum">
                 <option *ngFor="let opt of dadosBasicos.rodasEnum" [ngValue]="opt">{{opt.descricao}}</option>
             </select>
         </div>
-        <div class="form-group">
+        <div class="form-group" *ngIf="isGasolina || isDiesel || isEtanol || isFlex || isHibrido || isHibridoFlex || isEletrico">
             <label for="pneus">Pneus</label>
             <input id="pneus" [(ngModel)]="fichaTecnica.pneus" name="pneus" class="form-control" style="width: 20%;">
         </div>
-        <div class="form-group">
+        <div class="form-group" *ngIf="isGasolina || isDiesel || isEtanol || isFlex || isHibrido || isHibridoFlex || isEletrico">
             <label for="peso">Peso</label>
             <input id="peso" type="number" [(ngModel)]="fichaTecnica.peso" name="peso" class="form-control" style="width: 20%;">
         </div>
-        <div class="form-group">
+        <div class="form-group" *ngIf="isGasolina || isDiesel || isEtanol || isFlex || isHibrido || isHibridoFlex || isEletrico">
             <label for="pbt">PBT</label>
             <input id="pbt" type="number" [(ngModel)]="fichaTecnica.pbt" name="pbt" class="form-control" style="width: 20%;">
         </div>
-        <div class="form-group">
+        <div class="form-group" *ngIf="isGasolina || isDiesel || isEtanol || isFlex || isHibrido || isHibridoFlex || isEletrico">
             <label for="portaMalas">Porta Malas</label>
             <input id="portaMalas" type="number" [(ngModel)]="fichaTecnica.portaMalas" name="portaMalas" class="form-control" style="width: 20%;">
         </div>
-        <div class="form-group">
+        <div class="form-group" *ngIf="isGasolina || isDiesel || isEtanol || isFlex || isHibrido || isHibridoFlex || isEletrico">
             <label for="tanqueCombustivel">Tanque de Combustível</label>
             <input id="tanqueCombustivel" type="number" [(ngModel)]="fichaTecnica.tanqueCombustivel" name="tanqueCombustivel" class="form-control" style="width: 20%;">
         </div>
-        <div class="form-group">
+        <div class="form-group" *ngIf="isHibrido || isHibridoFlex || isEletrico">
             <label for="quantidadeDeMotoresEletricos">Quantidade de Motores Elétricos</label>
             <input id="quantidadeDeMotoresEletricos" type="number" [(ngModel)]="fichaTecnica.quantidadeDeMotoresEletricos" name="quantidadeDeMotoresEletricos" class="form-control" style="width: 20%;">
         </div>
-        <div class="form-group">
+        <div class="form-group" *ngIf="isFlex || isHibridoFlex">
             <label for="potenciaG">Potência G</label>
             <input id="potenciaG" type="number" [(ngModel)]="fichaTecnica.potenciaG" name="potenciaG" class="form-control" style="width: 20%;">
         </div>
-        <div class="form-group">
+        <div class="form-group" *ngIf="isFlex || isHibridoFlex">
             <label for="potenciaE">Potência E</label>
             <input id="potenciaE" type="number" [(ngModel)]="fichaTecnica.potenciaE" name="potenciaE" class="form-control" style="width: 20%;">
         </div>
-        <div class="form-group">
+        <div class="form-group" *ngIf="isFlex || isHibridoFlex">
             <label for="torqueG">Torque G</label>
             <input id="torqueG" type="number" [(ngModel)]="fichaTecnica.torqueG" name="torqueG" class="form-control" style="width: 20%;">
         </div>
-        <div class="form-group">
+        <div class="form-group" *ngIf="isFlex || isHibridoFlex">
             <label for="torqueE">Torque E</label>
             <input id="torqueE" type="number" [(ngModel)]="fichaTecnica.torqueE" name="torqueE" class="form-control" style="width: 20%;">
         </div>
-        <div class="form-group">
+        <div class="form-group" *ngIf="isGasolina || isDiesel || isEtanol || isFlex || isHibrido || isHibridoFlex">
             <label for="cilindrada">Cilindradas</label>
             <input id="cilindrada" type="number" [(ngModel)]="fichaTecnica.cilindrada" name="cilindrada" class="form-control" style="width: 20%;">
         </div>
-        <div class="form-group">
+        <div class="form-group" *ngIf="isGasolina || isDiesel || isEtanol || isFlex || isHibrido || isHibridoFlex">
             <label for="qtdCilindros">Quantidade de Cilindros</label>
             <input id="qtdCilindros" type="number" [(ngModel)]="fichaTecnica.qtdCilindros" name="qtdCilindros" class="form-control" style="width: 20%;">
         </div>
-        <div class="form-group">
+        <div class="form-group" *ngIf="isGasolina || isDiesel || isEtanol || isFlex || isHibrido || isHibridoFlex">
             <label for="qtdValvulas">Quantidade de Válvulas</label>
             <input id="qtdValvulas" type="number" [(ngModel)]="fichaTecnica.qtdValvulas" name="qtdValvulas" class="form-control" style="width: 20%;">
         </div>
-        <div class="form-group">
+        <div class="form-group" *ngIf="isHibrido || isHibridoFlex">
             <label for="potenciaEletrica">Potência Elétrica</label>
             <input id="potenciaEletrica" type="number" [(ngModel)]="fichaTecnica.potenciaEletrica" name="potenciaEletrica" class="form-control" style="width: 20%;">
         </div>
-        <div class="form-group">
+        <div class="form-group" *ngIf="isHibrido || isHibridoFlex">
             <label for="torqueEletrico">Torque Elétrico</label>
             <input id="torqueEletrico" type="number" [(ngModel)]="fichaTecnica.torqueEletrico" name="torqueEletrico" class="form-control" style="width: 20%;">
         </div>
-        <div class="form-group">
+        <div class="form-group" *ngIf="isHibrido">
             <label for="potenciaCombinada">Potência Combinada</label>
             <input id="potenciaCombinada" type="number" [(ngModel)]="fichaTecnica.potenciaCombinada" name="potenciaCombinada" class="form-control" style="width: 20%;">
         </div>
-        <div class="form-group">
+        <div class="form-group" *ngIf="isHibrido">
             <label for="torqueCombinado">Torque Combinado</label>
             <input id="torqueCombinado" type="number" [(ngModel)]="fichaTecnica.torqueCombinado" name="torqueCombinado" class="form-control" style="width: 20%;">
         </div>
-        <div class="form-group">
-            <label for="quantidadeDeMotores">Quantidade de Motores</label>
-            <input id="quantidadeDeMotores" type="number" [(ngModel)]="fichaTecnica.quantidadeDeMotores" name="quantidadeDeMotores" class="form-control" style="width: 20%;">
-        </div>
-        <div class="form-group">
+        <div class="form-group" *ngIf="isHibridoFlex">
             <label for="potenciaCombinadaG">Potência Combinada G</label>
             <input id="potenciaCombinadaG" type="number" [(ngModel)]="fichaTecnica.potenciaCombinadaG" name="potenciaCombinadaG" class="form-control" style="width: 20%;">
         </div>
-        <div class="form-group">
+        <div class="form-group" *ngIf="isHibridoFlex">
             <label for="potenciaCombinadaE">Potência Combinada E</label>
             <input id="potenciaCombinadaE" type="number" [(ngModel)]="fichaTecnica.potenciaCombinadaE" name="potenciaCombinadaE" class="form-control" style="width: 20%;">
         </div>
-        <div class="form-group">
+        <div class="form-group" *ngIf="isHibridoFlex">
             <label for="torqueCombinadoG">Torque Combinado G</label>
             <input id="torqueCombinadoG" type="number" [(ngModel)]="fichaTecnica.torqueCombinadoG" name="torqueCombinadoG" class="form-control" style="width: 20%;">
         </div>
-        <div class="form-group">
+        <div class="form-group" *ngIf="isHibridoFlex">
             <label for="torqueCombinadoE">Torque Combinado E</label>
             <input id="torqueCombinadoE" type="number" [(ngModel)]="fichaTecnica.torqueCombinadoE" name="torqueCombinadoE" class="form-control" style="width: 20%;">
         </div>

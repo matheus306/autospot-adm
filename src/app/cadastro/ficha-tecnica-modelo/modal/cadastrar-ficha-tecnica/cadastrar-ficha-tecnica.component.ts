@@ -19,6 +19,15 @@ export class CadastrarFichaTecnicaComponent implements OnInit {
   fichaTecnica = new FichaTecnica();
   dadosBasicos : any;
 
+  isDiesel = false;
+  isEletrico = false;
+  isEtanol = false;
+  isFlex = false;
+  isGasolina = false;
+  isHibrido = false;
+  isHibridoFlex = false;
+
+
   constructor(private ref : MatDialogRef<FichaTecnicaDoModeloComponent>, 
               @Inject(MAT_DIALOG_DATA) public data : any,
               private fichaTecnicaService: FichaTecnicaService) {
@@ -32,6 +41,16 @@ export class CadastrarFichaTecnicaComponent implements OnInit {
         this.fichaTecnica = data.fichaTecnica
       }
     }
+  }
+
+  tipoFonteChange(e) {
+    this.isDiesel      = e.codigo == 1; //DIESEL(1,"Diesel")
+    this.isEletrico    = e.codigo == 2; //ELETRICO(2,"Elétrico")
+    this.isEtanol      = e.codigo == 3; //ETANOL(3,"Etanol")
+    this.isFlex        = e.codigo == 4; //FLEX(4,"Flex")
+    this.isGasolina    = e.codigo == 5; //GASOLINA(5,"Gasolina")
+    this.isHibrido     = e.codigo == 6; //HIBRIDO(6,"Híbrido")
+    this.isHibridoFlex = e.codigo == 7; //HIBRIDO_FLEX(7,"Híbrido Flex")
   }
 
   ngOnInit(): void {
