@@ -18,6 +18,7 @@ export class CadastrarFichaTecnicaComponent implements OnInit {
   anoModelo : AnoModelo;
   fichaTecnica = new FichaTecnica();
   dadosBasicos : any;
+  isModoEdicao = false;
 
   isDiesel = false;
   isEletrico = false;
@@ -36,9 +37,10 @@ export class CadastrarFichaTecnicaComponent implements OnInit {
       this.anoModelo = data.anoModeloSelecionado;
       this.dadosBasicos = data.dadosBasicos;
       this.fichaTecnica.anoModelo = data.anoModeloSelecionado;
-      
+      this.isModoEdicao = data.editar;
+
       if(data.fichaTecnica) {
-        this.fichaTecnica = data.fichaTecnica
+        this.fichaTecnica = data.fichaTecnica;
       }
     }
   }
@@ -55,43 +57,47 @@ export class CadastrarFichaTecnicaComponent implements OnInit {
 
   ngOnInit(): void {
 
-    let mapaFontesJaCadastradas = this.anoModelo.fichaTecnica.map(obj => obj.tipoFonteEnergetica.codigo);
-    this.dadosBasicos.tipoFonteEnergetica = this.dadosBasicos.tipoFonteEnergetica.filter(obj => {
-      return !mapaFontesJaCadastradas.includes(obj.codigo);
-    })
+    if(!this.isModoEdicao) {
+      let mapaFontesJaCadastradas = this.anoModelo.fichaTecnica.map(obj => obj.tipoFonteEnergetica.codigo);
+      this.dadosBasicos.tipoFonteEnergetica = this.dadosBasicos.tipoFonteEnergetica.filter(obj => {
+        return !mapaFontesJaCadastradas.includes(obj.codigo);
+      })
 
-    let mapaTransmissaoJaCadastradas = this.anoModelo.fichaTecnica.map(obj => obj.transmissaoEnum.codigo);
-    this.dadosBasicos.transmissaoEnum = this.dadosBasicos.transmissaoEnum.filter(obj => {
-      return !mapaTransmissaoJaCadastradas.includes(obj.codigo);
-    })
+      let mapaTransmissaoJaCadastradas = this.anoModelo.fichaTecnica.map(obj => obj.transmissaoEnum.codigo);
+      this.dadosBasicos.transmissaoEnum = this.dadosBasicos.transmissaoEnum.filter(obj => {
+        return !mapaTransmissaoJaCadastradas.includes(obj.codigo);
+      })
 
-    let mapaAlimentacaoJaCadastradas = this.anoModelo.fichaTecnica.map(obj => obj.alimentacaoEnum.codigo);
-    this.dadosBasicos.alimentacaoEnum = this.dadosBasicos.alimentacaoEnum.filter(obj => {
-      return !mapaAlimentacaoJaCadastradas.includes(obj.codigo);
-    })
+      let mapaAlimentacaoJaCadastradas = this.anoModelo.fichaTecnica.map(obj => obj.alimentacaoEnum.codigo);
+      this.dadosBasicos.alimentacaoEnum = this.dadosBasicos.alimentacaoEnum.filter(obj => {
+        return !mapaAlimentacaoJaCadastradas.includes(obj.codigo);
+      })
 
-    let mapaTracaoJaCadastradas = this.anoModelo.fichaTecnica.map(obj => obj.tracaoEnum.codigo);
-    this.dadosBasicos.tracaoEnum = this.dadosBasicos.tracaoEnum.filter(obj => {
-      return !mapaTracaoJaCadastradas.includes(obj.codigo);
-    })
+      let mapaTracaoJaCadastradas = this.anoModelo.fichaTecnica.map(obj => obj.tracaoEnum.codigo);
+      this.dadosBasicos.tracaoEnum = this.dadosBasicos.tracaoEnum.filter(obj => {
+        return !mapaTracaoJaCadastradas.includes(obj.codigo);
+      })
 
-    let mapaDirecaoJaCadastradas = this.anoModelo.fichaTecnica.map(obj => obj.direcaoEnum.codigo);
-    this.dadosBasicos.direcaoEnum = this.dadosBasicos.direcaoEnum.filter(obj => {
-      return !mapaDirecaoJaCadastradas.includes(obj.codigo);
-    })
+      let mapaDirecaoJaCadastradas = this.anoModelo.fichaTecnica.map(obj => obj.direcaoEnum.codigo);
+      this.dadosBasicos.direcaoEnum = this.dadosBasicos.direcaoEnum.filter(obj => {
+        return !mapaDirecaoJaCadastradas.includes(obj.codigo);
+      })
 
-    let mapaRodasJaCadastradas = this.anoModelo.fichaTecnica.map(obj => obj.rodasEnum.codigo);
-    this.dadosBasicos.rodasEnum = this.dadosBasicos.rodasEnum.filter(obj => {
-      return !mapaRodasJaCadastradas.includes(obj.codigo);
-    })
+      let mapaRodasJaCadastradas = this.anoModelo.fichaTecnica.map(obj => obj.rodasEnum.codigo);
+      this.dadosBasicos.rodasEnum = this.dadosBasicos.rodasEnum.filter(obj => {
+        return !mapaRodasJaCadastradas.includes(obj.codigo);
+      })
 
-    if(this.fichaTecnica && this.fichaTecnica.id) {
-       this.dadosBasicos.tipoFonteEnergetica.push(this.fichaTecnica.tipoFonteEnergetica);
-       this.dadosBasicos.transmissaoEnum.push(this.fichaTecnica.transmissaoEnum);
-       this.dadosBasicos.alimentacaoEnum.push(this.fichaTecnica.alimentacaoEnum);
-       this.dadosBasicos.tracaoEnum.push(this.fichaTecnica.tracaoEnum);
-       this.dadosBasicos.direcaoEnum.push(this.fichaTecnica.direcaoEnum);
-       this.dadosBasicos.rodasEnum.push(this.fichaTecnica.rodasEnum);
+      if(this.fichaTecnica && this.fichaTecnica.id) {
+        this.dadosBasicos.tipoFonteEnergetica.push(this.fichaTecnica.tipoFonteEnergetica);
+        this.dadosBasicos.transmissaoEnum.push(this.fichaTecnica.transmissaoEnum);
+        this.dadosBasicos.alimentacaoEnum.push(this.fichaTecnica.alimentacaoEnum);
+        this.dadosBasicos.tracaoEnum.push(this.fichaTecnica.tracaoEnum);
+        this.dadosBasicos.direcaoEnum.push(this.fichaTecnica.direcaoEnum);
+        this.dadosBasicos.rodasEnum.push(this.fichaTecnica.rodasEnum);
+      }
+    } else {
+      this.tipoFonteChange(this.fichaTecnica.tipoFonteEnergetica);
     }
   }
 
@@ -103,7 +109,11 @@ export class CadastrarFichaTecnicaComponent implements OnInit {
   }
 
   atualizar(){
-    
+    this.fichaTecnica.anoModelo = {"id" : this.anoModelo.id};
+    this.fichaTecnicaService.editar(this.fichaTecnica).subscribe(retorno => {
+      this.refresh.emit(retorno);
+      this.ref.close();
+    });
   }
 
   close(){

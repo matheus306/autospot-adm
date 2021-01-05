@@ -48,6 +48,7 @@ export class FichaTecnicaDoModeloComponent implements OnInit {
     let obj = {dadosBasicos : this.dadosBasicos, anoModeloSelecionado :  this.anoModeloSelecionado}
     const dialogRef = this.modal.open(CadastrarFichaTecnicaComponent, {width: '90%', data: obj});
     dialogRef.componentInstance.refresh.subscribe(retorno => {
+
       this.selecionarModelo(new ModeloAutospotDTO(this.anoModeloSelecionado.id));
     })
   }
@@ -64,7 +65,8 @@ export class FichaTecnicaDoModeloComponent implements OnInit {
     let obj = {
                 dadosBasicos : this.dadosBasicos, 
                 anoModeloSelecionado :  this.anoModeloSelecionado,
-                fichaTecnica: fichaTecnicaSelecionada
+                fichaTecnica: fichaTecnicaSelecionada,
+                editar : true
               }
     const dialogRef = this.modal.open(CadastrarFichaTecnicaComponent, {width: '90%', data: obj});
     dialogRef.componentInstance.refresh.subscribe(retorno => {
