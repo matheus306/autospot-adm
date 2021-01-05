@@ -98,6 +98,7 @@ export class CadastrarFichaTecnicaComponent implements OnInit {
   salvar() {
     this.fichaTecnicaService.salvar(this.fichaTecnica).subscribe(retorno => {
       this.refresh.emit(retorno);
+      this.ref.close();
     });
   }
 

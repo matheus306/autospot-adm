@@ -11,7 +11,7 @@
           <label for="potencia">Potência</label> 
           <input id="potencia" type="number" [(ngModel)]="fichaTecnica.potencia" name="potencia" class="form-control" style="width: 20%;">
         </div>
-        <div class="form-group" *ngIf="isGasolina || isDiesel || isEtanol || isEletrico || isHibrido || isHibridoFlex">
+        <div class="form-group" *ngIf="isGasolina || isDiesel || isEtanol || isEletrico || isHibridoFlex">
             <label for="torque">Torque</label>
             <input id="torque" type="number" [(ngModel)]="fichaTecnica.torque" name="torque" class="form-control" style="width: 20%;">
         </div>
