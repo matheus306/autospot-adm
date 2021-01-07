@@ -35,7 +35,7 @@ export class CadastrarFichaTecnicaComponent implements OnInit {
 
     if(data) {
       this.anoModelo = data.anoModeloSelecionado;
-      this.dadosBasicos = data.dadosBasicos;
+      this.dadosBasicos = Object.assign({}, data.dadosBasicos);
       this.fichaTecnica.anoModelo = data.anoModeloSelecionado;
       this.isModoEdicao = data.editar;
 
@@ -58,32 +58,33 @@ export class CadastrarFichaTecnicaComponent implements OnInit {
   ngOnInit(): void {
 
     if(!this.isModoEdicao) {
+  
       let mapaFontesJaCadastradas = this.anoModelo.fichaTecnica.map(obj => obj.tipoFonteEnergetica.codigo);
       this.dadosBasicos.tipoFonteEnergetica = this.dadosBasicos.tipoFonteEnergetica.filter(obj => {
         return !mapaFontesJaCadastradas.includes(obj.codigo);
       })
 
-      let mapaTransmissaoJaCadastradas = this.anoModelo.fichaTecnica.map(obj => obj.transmissaoEnum.codigo);
+      let mapaTransmissaoJaCadastradas = this.anoModelo.fichaTecnica.map(obj => obj.transmissaoEnum ? obj.transmissaoEnum.codigo : undefined);
       this.dadosBasicos.transmissaoEnum = this.dadosBasicos.transmissaoEnum.filter(obj => {
         return !mapaTransmissaoJaCadastradas.includes(obj.codigo);
       })
 
-      let mapaAlimentacaoJaCadastradas = this.anoModelo.fichaTecnica.map(obj => obj.alimentacaoEnum.codigo);
+      let mapaAlimentacaoJaCadastradas = this.anoModelo.fichaTecnica.map(obj => obj.alimentacaoEnum ? obj.alimentacaoEnum.codigo : undefined);
       this.dadosBasicos.alimentacaoEnum = this.dadosBasicos.alimentacaoEnum.filter(obj => {
         return !mapaAlimentacaoJaCadastradas.includes(obj.codigo);
       })
 
-      let mapaTracaoJaCadastradas = this.anoModelo.fichaTecnica.map(obj => obj.tracaoEnum.codigo);
+      let mapaTracaoJaCadastradas = this.anoModelo.fichaTecnica.map(obj => obj.tracaoEnum ? obj.tracaoEnum.codigo : undefined);
       this.dadosBasicos.tracaoEnum = this.dadosBasicos.tracaoEnum.filter(obj => {
         return !mapaTracaoJaCadastradas.includes(obj.codigo);
       })
 
-      let mapaDirecaoJaCadastradas = this.anoModelo.fichaTecnica.map(obj => obj.direcaoEnum.codigo);
+      let mapaDirecaoJaCadastradas = this.anoModelo.fichaTecnica.map(obj => obj.direcaoEnum ? obj.direcaoEnum.codigo : undefined);
       this.dadosBasicos.direcaoEnum = this.dadosBasicos.direcaoEnum.filter(obj => {
         return !mapaDirecaoJaCadastradas.includes(obj.codigo);
       })
 
-      let mapaRodasJaCadastradas = this.anoModelo.fichaTecnica.map(obj => obj.rodasEnum.codigo);
+      let mapaRodasJaCadastradas = this.anoModelo.fichaTecnica.map(obj => obj.rodasEnum ? obj.rodasEnum.codigo : undefined);
       this.dadosBasicos.rodasEnum = this.dadosBasicos.rodasEnum.filter(obj => {
         return !mapaRodasJaCadastradas.includes(obj.codigo);
       })
