@@ -13,6 +13,7 @@ import { HomeComponent } from './home';
 import { LoginComponent } from './login';
 import { DadosBasicosModule } from '@app/dados-basicos';
 import { CadastroModule } from '@app/cadastro'
+import { AnoModeloComponent } from '@app/components'
 
 
 @NgModule({

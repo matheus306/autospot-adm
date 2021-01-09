@@ -20,6 +20,8 @@ import { ListaAutoSpotComponent } from '@app/cadastro/lista-auto-spot'
 import { ItensDoModeloComponent } from '@app/cadastro/itens-do-modelo'
 import { FichaTecnicaDoModeloComponent } from '@app/cadastro/ficha-tecnica-modelo'
 import { CadastrarFichaTecnicaComponent } from '@app/cadastro/ficha-tecnica-modelo/modal/cadastrar-ficha-tecnica'
+import { ImagensComponent } from '@app/cadastro/imagens'
+import { AnoModeloComponent } from '@app/components'
 
 
 @NgModule({
@@ -31,7 +33,9 @@ import { CadastrarFichaTecnicaComponent } from '@app/cadastro/ficha-tecnica-mode
     ListaAutoSpotComponent,
     ItensDoModeloComponent,
     FichaTecnicaDoModeloComponent,
-    CadastrarFichaTecnicaComponent],
+    CadastrarFichaTecnicaComponent,
+    ImagensComponent,
+    AnoModeloComponent],
   imports: [
     CommonModule,
     MatFormFieldModule,
@@ -45,7 +49,7 @@ import { CadastrarFichaTecnicaComponent } from '@app/cadastro/ficha-tecnica-mode
     MatIconModule,
     MatDialogModule,
     MatSelectModule,
-    MatCheckboxModule,
+    MatCheckboxModule
   ]
 })
 export class CadastroModule { }

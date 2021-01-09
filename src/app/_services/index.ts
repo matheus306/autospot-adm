@@ -8,3 +8,4 @@ export * from './item.serie.service';
 export * from './lista-autospot.service';
 export * from './dashboard.service';
 export * from './ficha.tecnica.service';
+export * from './upload.img.service'

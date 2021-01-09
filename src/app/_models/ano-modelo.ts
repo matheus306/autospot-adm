@@ -1,4 +1,5 @@
 import { ItemSerie } from '@app/_models';
+import { AmazonImage } from './amazon.image';
 import { FichaTecnica } from './ficha-tecnica';
 export class AnoModelo {
     id?: number;
@@ -7,4 +8,5 @@ export class AnoModelo {
     Value?: string;
     itensDeSerie?: Array<ItemSerie>
     fichaTecnica?: Array<FichaTecnica>
+    imagens?: Array<AmazonImage>
 }
