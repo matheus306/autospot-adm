@@ -1,4 +1,3 @@
-
 import { Observable } from 'rxjs';
 import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -29,5 +28,9 @@ export class UploadImgService {
 
   excluir(id: number) {
     return this.http.delete<AmazonImage[]>(`${environment.apiUrl}/api/v1/img/${id}`);
+  }
+
+  setarImagemPrincipal(amazonImage : AmazonImage) {
+    return this.http.put(`${environment.apiUrl}/api/v1/img/`, amazonImage);
   }
 }

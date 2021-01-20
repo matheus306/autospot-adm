@@ -37,6 +37,23 @@ export class ImagensComponent implements OnInit {
     this.aposSelecionarModelo()
   }
 
+  atualizaImagePrincipal(amazonImage : AmazonImage) {
+    this.loading = true;
+    amazonImage.anoModelo = {}
+    amazonImage.anoModelo.id = this.anoModeloParam.id;
+    this.uploadService.setarImagemPrincipal(amazonImage).subscribe(retorno => {
+      this.atualizarAnoModeloAposAcao();
+    })
+  }
+
+  private atualizarAnoModeloAposAcao() {
+    this.anoModeloService.findById(this.anoModeloParam.id).subscribe(obj => {
+      this.anoModeloParam = obj;
+      this.aposSelecionarModelo();
+      this.loading = false;
+    });
+  }
+
   aposSelecionarModelo() {
     this.dataSource = new MatTableDataSource<AmazonImage>(this.anoModeloParam.imagens);
     this.dataSource.paginator = this.paginator;
@@ -58,13 +75,7 @@ export class ImagensComponent implements OnInit {
     }
   }
 
-  private atualizarAnoModeloAposAcao() {
-    this.anoModeloService.findById(this.anoModeloParam.id).subscribe(obj => {
-      this.anoModeloParam = obj;
-      this.aposSelecionarModelo();
-      this.loading = false;
-    });
-  }
+  
 
   upload(): void {
     this.progress = 0;
