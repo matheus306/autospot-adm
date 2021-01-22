@@ -78,8 +78,16 @@ export class ImagensComponent implements OnInit {
   
 
   upload(): void {
+
     this.progress = 0;
     this.currentFile = this.selectedFiles.item(0);
+
+    if(this.currentFile.size/1024/1024 > 1) {
+      alert('Tamanho máximo 1mb');
+      this.currentFile = undefined;
+      return;
+    }
+
     this.uploadService.upload(this.currentFile, this.anoModeloParam).subscribe(
       
       event => {
